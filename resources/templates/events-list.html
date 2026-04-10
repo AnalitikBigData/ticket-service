@@ -1,0 +1,64 @@
+<html xmlns:th="http://thymeleaf.org"
+      th:replace="~{layout :: main-layout(~{::section})}">
+<body>
+<section>
+  <h1>Список мероприятий</h1>
+
+  <!-- Форма фильтрации и сортировки -->
+  <form th:action="@{/events}" method="get" style="background: #f4f7f6; padding: 20px; border-radius: 8px; margin-bottom: 30px; display: flex; gap: 15px; flex-wrap: wrap; align-items: flex-end;">
+
+    <div style="display: flex; flex-direction: column; gap: 5px;">
+      <label>Категория:</label>
+      <select name="category" style="padding: 8px; border-radius: 4px; border: 1px solid #ccc;">
+        <option value="">Все категории</option>
+        <option value="CONCERT" th:selected="${category == 'CONCERT'}">Концерт</option>
+        <option value="THEATRE" th:selected="${category == 'THEATRE'}">Театр</option>
+        <option value="FESTIVAL" th:selected="${category == 'FESTIVAL'}">Фестиваль</option>
+      </select>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 5px;">
+      <label>С даты:</label>
+      <input type="datetime-local" name="dateStart" th:value="${dateStart}" style="padding: 7px; border-radius: 4px; border: 1px solid #ccc;">
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 5px;">
+      <label>Сортировать по:</label>
+      <select name="sortBy" style="padding: 8px; border-radius: 4px; border: 1px solid #ccc;">
+        <option value="date" th:selected="${sortBy == 'date'}">Дате</option>
+        <option value="name" th:selected="${sortBy == 'name'}">Названию</option>
+      </select>
+    </div>
+
+    <button type="submit" style="padding: 9px 20px; background-color: #2c3e50; color: white; border: none; border-radius: 4px; cursor: pointer;">Применить</button>
+    <a th:href="@{/events}" style="padding: 9px 20px; background-color: #bdc3c7; color: black; text-decoration: none; border-radius: 4px; font-size: 14px;">Сбросить</a>
+  </form>
+
+  <!-- Сетка карточек -->
+  <div class="events-grid">
+    <div class="event-card" th:each="event : ${events}">
+      <a th:href="@{/events/{id}(id=${event.eventId})}" style="text-decoration: none; color: inherit;">
+        <h3 th:text="${event.name}" style="margin: 0 0 10px 0; color: #2c3e50;">Название</h3>
+      </a>
+      <p>📍 <span th:text="${event.city}">Город</span></p>
+      <p>📅 <span th:text="${#temporals.format(event.date, 'dd.MM.yyyy HH:mm')}">Дата</span></p>
+      <button style="margin-top: auto; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">
+        Купить билет
+      </button>
+    </div>
+  </div>
+
+  <!-- Обновленная пагинация (с учетом фильтров) -->
+  <div style="margin-top: 40px; text-align: center;">
+    <a th:if="${currentPage > 0}"
+       th:href="@{/events(page=${currentPage - 1}, category=${category}, dateStart=${dateStart}, sortBy=${sortBy})}"
+       style="text-decoration: none;">← Назад</a>
+
+    <span style="margin: 0 15px;" th:text="'Страница ' + (${currentPage} + 1)">1</span>
+
+    <a th:href="@{/events(page=${currentPage + 1}, category=${category}, dateStart=${dateStart}, sortBy=${sortBy})}"
+       style="text-decoration: none;">Вперед →</a>
+  </div>
+</section>
+</body>
+</html>

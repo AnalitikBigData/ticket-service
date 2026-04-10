@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+      th:replace="~{layout :: main-layout(~{::section})}">
+<body>
+<section>
+  <!-- Блок Hero (Баннер) -->
+  <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white; padding: 80px 40px; border-radius: 20px; text-align: center;
+                margin-bottom: 50px; box-shadow: 0 10px 30px rgba(118, 75, 162, 0.3);">
+
+        <span style="background: #ff4757; padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 14px;">
+            🔥 УСПЕЙ КУПИТЬ
+        </span>
+
+    <h1 style="font-size: 48px; margin: 20px 0;" th:text="${hotEventName}">Ближайшее событие</h1>
+    <p style="font-size: 20px; opacity: 0.9;">Скоро состоится! Дата проведения: <span th:text="${#temporals.format(hotEventDate, 'dd.MM.yyyy HH:mm')}">Дата</span></p>
+
+    <div style="margin-top: 30px;">
+      <a th:href="@{/events/{id}(id=${hotEventId})}"
+         style="background: white; color: #764ba2; padding: 15px 35px; border-radius: 30px;
+                      text-decoration: none; font-weight: bold; font-size: 18px; display: inline-block; transition: 0.3s;"
+         onmouseover="this.style.transform='scale(1.05)'"
+         onmouseout="this.style.transform='scale(1)'">
+        Купить билет
+      </a>
+    </div>
+  </div>
+
+  <!-- Блок Навигации по сайту -->
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 50px;">
+
+    <!-- Карточка: Все мероприятия -->
+    <a th:href="@{/events}" style="text-decoration: none; color: inherit;">
+      <div style="padding: 30px; border: 2px solid #eee; border-radius: 15px; text-align: center; transition: 0.3s; height: 100%;"
+           onmouseover="this.style.borderColor='#764ba2'; this.style.background='#fcfaff'"
+           onmouseout="this.style.borderColor='#eee'; this.style.background='none'">
+        <div style="font-size: 40px; margin-bottom: 10px;">🎟️</div>
+        <h2 style="margin: 0 0 10px 0;">Все мероприятия</h2>
+        <p style="color: #7f8c8d;">Посмотрите полный список концертов, театров и фестивалей в вашем городе.</p>
+      </div>
+    </a>
+
+    <!-- Карточка: Контакты -->
+    <a th:href="@{/contacts}" style="text-decoration: none; color: inherit;">
+      <div style="padding: 30px; border: 2px solid #eee; border-radius: 15px; text-align: center; transition: 0.3s; height: 100%;"
+           onmouseover="this.style.borderColor='#764ba2'; this.style.background='#fcfaff'"
+           onmouseout="this.style.borderColor='#eee'; this.style.background='none'">
+        <div style="font-size: 40px; margin-bottom: 10px;">📞</div>
+        <h2 style="margin: 0 0 10px 0;">Контакты</h2>
+        <p style="color: #7f8c8d;">У вас возникли вопросы? Мы всегда на связи и готовы помочь вам с выбором.</p>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- Инфо-блок -->
+  <div style="text-align: center; padding: 40px; background: #f8f9fa; border-radius: 15px;">
+    <h3>Почему выбирают нас?</h3>
+    <div style="display: flex; justify-content: center; gap: 50px; margin-top: 20px; flex-wrap: wrap;">
+      <div><strong>⚡ Быстро</strong><br><small>Электронный билет за 1 минуту</small></div>
+      <div><strong>🔒 Безопасно</strong><br><small>Официальные организаторы</small></div>
+      <div><strong>⭐ Удобно</strong><br><small>Все лучшие места в одном месте</small></div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

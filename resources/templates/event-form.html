@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org" th:replace="~{layout :: main-layout(~{::section})}">
+<body>
+<section>
+  <div style="max-width: 600px; margin: 0 auto; background: white; padding: 40px; border-radius: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.1);">
+    <h2 th:text="${isEdit ? 'Редактирование страницы' : 'Создание новой страницы'}" style="margin-top: 0; color: #764ba2;">Форма</h2>
+
+    <form th:action="@{/admin/events/save}" th:object="${eventRequest}" method="post">
+      <input type="hidden" th:field="*{eventId}">
+
+      <div style="display: flex; flex-direction: column; gap: 15px; margin-top: 20px;">
+        <div>
+          <label style="display: block; margin-bottom: 5px; font-weight: bold;">Название*</label>
+          <input type="text" th:field="*{name}" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ddd; box-sizing: border-box;">
+          <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red; font-size: 12px;"></p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+          <div>
+            <label style="display: block; margin-bottom: 5px; font-weight: bold;">Категория</label>
+            <select th:field="*{category}" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ddd; box-sizing: border-box;">
+              <option th:each="cat : ${categories}" th:value="${cat}" th:text="${cat}">Cat</option>
+            </select>
+          </div>
+          <div>
+            <label style="display: block; margin-bottom: 5px; font-weight: bold;">Город</label>
+            <input type="text" th:field="*{city}" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ddd; box-sizing: border-box;">
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+          <div>
+            <label style="display: block; margin-bottom: 5px; font-weight: bold;">Дата и время</label>
+            <input type="datetime-local" th:field="*{date}" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ddd; box-sizing: border-box;">
+          </div>
+          <div>
+            <label style="display: block; margin-bottom: 5px; font-weight: bold;">Мест</label>
+            <input type="number" th:field="*{numberSeats}" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ddd; box-sizing: border-box;">
+          </div>
+        </div>
+
+        <div>
+          <label style="display: block; margin-bottom: 5px; font-weight: bold;">Статус</label>
+          <select th:field="*{status}" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ddd; box-sizing: border-box;">
+            <option value="ACTIVE">ACTIVE</option>
+            <option value="CANCELLED">CANCELLED</option>
+          </select>
+        </div>
+
+        <div style="display: flex; gap: 10px; margin-top: 20px;">
+          <button type="submit" class="btn-reg" style="flex: 2; border: none; padding: 12px; cursor: pointer;">Сохранить</button>
+          <a th:href="@{/admin/events}" style="flex: 1; text-align: center; padding: 12px; background: #eee; border-radius: 5px; text-decoration: none; color: #333;">Отмена</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+</body>
+</html>

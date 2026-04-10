@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+      th:replace="~{layout :: main-layout(~{::section})}">
+<body>
+<section>
+  <div style="max-width: 400px; margin: 60px auto; background: white; padding: 40px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
+
+    <h2 style="text-align: center; color: #2c3e50; margin-bottom: 30px;">Вход в систему</h2>
+
+    <!-- Сообщение об успешной регистрации, если пришли с той страницы -->
+    <div th:if="${param.success}" style="background: #d4edda; color: #155724; padding: 10px; border-radius: 5px; margin-bottom: 20px; text-align: center;">
+      Регистрация прошла успешно!
+    </div>
+
+    <form th:action="@{/login}" th:object="${loginRequest}" method="post">
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+
+        <div>
+          <label style="display: block; margin-bottom: 5px; font-weight: bold;">Логин</label>
+          <input type="text" th:field="*{loginUser}"
+                 style="width:100%; padding:12px; border-radius:5px; border:1px solid #ddd; box-sizing: border-box;">
+          <p th:if="${#fields.hasErrors('loginUser')}" th:errors="*{loginUser}" style="color:red; font-size:12px; margin-top:5px;"></p>
+        </div>
+
+        <div>
+          <label style="display: block; margin-bottom: 5px; font-weight: bold;">Пароль</label>
+          <input type="password" th:field="*{passwordUser}"
+                 style="width:100%; padding:12px; border-radius:5px; border:1px solid #ddd; box-sizing: border-box;">
+          <p th:if="${#fields.hasErrors('passwordUser')}" th:errors="*{passwordUser}" style="color:red; font-size:12px; margin-top:5px;"></p>
+        </div>
+
+        <button type="submit"
+                style="width:100%; padding:15px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color:white; border:none; border-radius:8px; font-weight:bold; font-size:16px; cursor:pointer;">
+          Войти
+        </button>
+      </div>
+
+      <p style="text-align:center; margin-top:25px; color:#7f8c8d;">
+        Нет аккаунта? <a th:href="@{/register}" style="color:#764ba2; text-decoration:none; font-weight:bold;">Зарегистрироваться</a>
+      </p>
+    </form>
+  </div>
+</section>
+</body>
+</html>

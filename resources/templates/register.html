@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!-- Важно: th:replace подключает наш основной шаблон с шапкой и подвалом -->
+<html xmlns:th="http://thymeleaf.org"
+      th:replace="~{layout :: main-layout(~{::section})}">
+<body>
+<section>
+    <!-- Контейнер-карточка, чтобы форма не была на весь экран -->
+    <div style="max-width: 500px; margin: 40px auto; background: white; padding: 40px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
+
+        <h2 style="text-align: center; color: #2c3e50; margin-bottom: 30px;">Регистрация</h2>
+
+        <form th:action="@{/register}" th:object="${user}" method="post">
+            <div style="display: flex; flex-direction: column; gap: 15px; margin-bottom: 20px;">
+
+                <div>
+                    <label style="display: block; margin-bottom: 5px; font-weight: bold;">Фамилия*</label>
+                    <input type="text" th:field="*{surnameUser}" style="width:100%; padding:10px; border-radius:5px; border:1px solid #ddd; box-sizing: border-box;">
+                </div>
+
+                <div>
+                    <label style="display: block; margin-bottom: 5px; font-weight: bold;">Имя*</label>
+                    <input type="text" th:field="*{nameUser}" style="width:100%; padding:10px; border-radius:5px; border:1px solid #ddd; box-sizing: border-box;">
+                </div>
+
+                <div>
+                    <label style="display: block; margin-bottom: 5px; font-weight: bold;">Отчество</label>
+                    <input type="text" th:field="*{fatherNameUser}" style="width:100%; padding:10px; border-radius:5px; border:1px solid #ddd; box-sizing: border-box;">
+                </div>
+
+                <div>
+                    <label style="display: block; margin-bottom: 5px; font-weight: bold;">Дата рождения</label>
+                    <input type="date" th:field="*{birthDateUser}" style="width:100%; padding:10px; border-radius:5px; border:1px solid #ddd; box-sizing: border-box;">
+                </div>
+
+                <div>
+                    <label style="display: block; margin-bottom: 5px; font-weight: bold;">Город</label>
+                    <input type="text" th:field="*{cityUser}" style="width:100%; padding:10px; border-radius:5px; border:1px solid #ddd; box-sizing: border-box;">
+                </div>
+
+                <div>
+                    <label style="display: block; margin-bottom: 5px; font-weight: bold;">Email*</label>
+                    <input type="email" th:field="*{emailUser}" style="width:100%; padding:10px; border-radius:5px; border:1px solid #ddd; box-sizing: border-box;" placeholder="name@domain.com">
+                </div>
+
+                <div>
+                    <label style="display: block; margin-bottom: 5px; font-weight: bold;">Логин*</label>
+                    <input type="text" th:field="*{loginUser}" style="width:100%; padding:10px; border-radius:5px; border:1px solid #ddd; box-sizing: border-box;">
+                </div>
+
+                <div>
+                    <label style="display: block; margin-bottom: 5px; font-weight: bold;">Пароль*</label>
+                    <input type="password" th:field="*{passwordUser}" style="width:100%; padding:10px; border-radius:5px; border:1px solid #ddd; box-sizing: border-box;">
+                </div>
+
+            </div>
+
+            <button type="submit" style="width:100%; padding:15px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color:white; border:none; border-radius:8px; font-weight:bold; font-size:16px; cursor:pointer;">
+                Создать аккаунт
+            </button>
+
+            <p style="text-align:center; margin-top:20px; color:#7f8c8d;">
+                Уже есть аккаунт? <a th:href="@{/login}" style="color:#764ba2; text-decoration:none; font-weight:bold;">Войти</a>
+            </p>
+        </form>
+    </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+      th:replace="~{layout :: main-layout(~{::section})}">
+<body>
+<section>
+  <h1 style="margin-bottom: 40px; text-align: center; color: #2c3e50;">Связаться с нами</h1>
+
+  <div style="display: flex; flex-wrap: wrap; gap: 40px; justify-content: center;">
+
+    <div style="flex: 1; min-width: 300px; max-width: 450px;">
+      <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); height: 100%;">
+        <h3 style="border-bottom: 2px solid #764ba2; display: inline-block; padding-bottom: 5px;">Наши контакты</h3>
+
+        <p style="margin-top: 25px; font-size: 18px;">📞 <strong>Телефон:</strong><br>
+          <a href="tel:+75555555555" style="color: #764ba2; text-decoration: none;">+7 (555) 555-55-55</a></p>
+
+        <p style="margin-top: 20px; font-size: 18px;">✉️ <strong>Email:</strong><br>
+          <a href="mailto:test_tickets@gmail.ru" style="color: #764ba2; text-decoration: none;">test_tickets@gmail.com</a></p>
+
+        <p style="margin-top: 20px; font-size: 18px;">📍 <strong>Адрес:</strong><br>
+          г. Москва, ул. Карла Либкнехта 21</p>
+
+        <div style="margin-top: 30px; padding: 15px; background: #fcfaff; border-radius: 10px; border-left: 4px solid #764ba2;">
+          <small style="color: #7f8c8d;">Мы работаем ежедневно с 09:00 до 21:00 по московскому времени.</small>
+        </div>
+      </div>
+    </div>
+
+    <div style="flex: 1; min-width: 300px; max-width: 500px;">
+      <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+          <span style="font-size: 24px;">💬</span>
+          <h3 style="margin: 0;">Напишите нам</h3>
+        </div>
+
+        <form>
+          <div style="margin-bottom: 15px;">
+            <input type="text" placeholder="Ваше имя" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box;">
+          </div>
+          <div style="margin-bottom: 15px;">
+            <input type="email" placeholder="Ваш Email" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box;">
+          </div>
+          <div style="margin-bottom: 15px;">
+            <textarea placeholder="Ваше сообщение..." rows="5" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; font-family: sans-serif;"></textarea>
+          </div>
+
+          <button type="button" style="width: 100%; padding: 12px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s;"
+                  onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+            Отправить сообщение
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div style="width: 100%; background: white; padding: 10px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); box-sizing: border-box;">
+    <h3 style="margin: 15px; color: #2c3e50;">Мы на карте:</h3>
+
+
+    <a href="https://yandex.ru, ул. Карла Либкнехта, 21" target="_blank" style="text-decoration: none;">
+      <div style="position: relative; overflow: hidden; border-radius: 10px; height: 400px;
+                    background-image: url('https://yandex.ru');
+                    background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center;">
+
+
+        <div style="background: rgba(118, 75, 162, 0.9); color: white; padding: 15px 25px; border-radius: 30px; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+          📍 Открыть интерактивную карту
+        </div>
+      </div>
+    </a>
+    <p style="text-align: center; color: #7f8c8d; font-size: 13px; margin-top: 10px;">
+      Нажмите на карту, чтобы построить маршрут
+    </p>
+  </div>
+
+</section>
+</body>
+</html>

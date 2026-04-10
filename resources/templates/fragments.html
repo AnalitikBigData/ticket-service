@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+      xmlns:sec="http://thymeleaf.org/extras/spring-security">
+
+<head th:fragment="header-css">
+    <style>
+        .footer { background: #f8f9fa; padding: 20px; text-align: center; border-top: 1px solid #dee2e6; margin-top: auto; }
+        header { background: #2c3e50; color: #fff; padding: 15px 40px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-weight: bold; font-size: 20px; text-decoration: none; color: white; }
+        .btn-reg { padding: 8px 20px; cursor: pointer; border-radius: 5px; border: none; background-color: #27ae60; color: white; font-weight: 600; text-decoration: none; }
+        .events-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; margin-top: 30px; }
+        .event-card { background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); display: flex; flex-direction: column; border: 1px solid #eee; }
+    </style>
+</head>
+<body>
+
+<header th:fragment="header">
+    <a th:href="@{/}" class="logo">Билетный сервис</a>
+
+    <div class="nav-actions" style="display: flex; align-items: center; gap: 10px;">
+        <!-- Оставляем навигацию по разделам -->
+        <a th:href="@{/events}" style="color: white; text-decoration: none; margin-right: 15px; font-size: 14px;">Мероприятия</a>
+        <a th:href="@{/contacts}" style="color: white; text-decoration: none; margin-right: 20px; font-size: 14px;">Контакты</a>
+
+        <!-- Кнопки входа и регистрации -->
+        <a th:href="@{/login}"
+           style="padding: 8px 18px; text-decoration: none; color: white; border: 1px solid rgba(255,255,255,0.5); border-radius: 5px; font-size: 14px; transition: 0.3s;"
+           onmouseover="this.style.background='rgba(255,255,255,0.1)'"
+           onmouseout="this.style.background='none'">
+            Вход
+        </a>
+
+        <a th:href="@{/register}" class="btn-reg" style="font-size: 14px;">
+            Регистрация
+        </a>
+    </div>
+</header>
+
+
+
+
+<footer th:fragment="footer" class="footer">
+    <p>&copy; <span th:text="${#dates.year(#dates.createNow())}"></span> Билетный сервис</p>
+</footer>
+
+
+</body>
+</html>
