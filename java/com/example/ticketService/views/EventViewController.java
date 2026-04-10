@@ -56,11 +56,11 @@ public class EventViewController {
 
     @GetMapping("/events/{id}")
     public String getEventDetails(@PathVariable Long id, Model model) {
-        // Используем ваш сервис, чтобы получить данные
+        
         GetEventByIdResponse event = eventService.getEventById(id);
 
         if (event == null) {
-            return "redirect:/events"; // Если событие не найдено, возвращаемся к списку
+            return "redirect:/events"; 
         }
 
         model.addAttribute("event", event);
@@ -93,7 +93,7 @@ public class EventViewController {
     public String showEditForm(@PathVariable Long id, Model model) {
         GetEventByIdResponse event = eventService.getEventById(id);
 
-        // Переносим данные из БД в контракт (DTO) для формы
+
         AddOrUpdateEventRequest request = new AddOrUpdateEventRequest();
         request.setEventId(id);
         request.setName(event.getName());
