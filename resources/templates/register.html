@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<!-- Важно: th:replace подключает наш основной шаблон с шапкой и подвалом -->
 <html xmlns:th="http://thymeleaf.org"
       th:replace="~{layout :: main-layout(~{::section})}">
 <body>
 <section>
-    <!-- Контейнер-карточка, чтобы форма не была на весь экран -->
+    
     <div style="max-width: 500px; margin: 40px auto; background: white; padding: 40px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
 
         <h2 style="text-align: center; color: #2c3e50; margin-bottom: 30px;">Регистрация</h2>
