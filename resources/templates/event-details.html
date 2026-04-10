@@ -7,40 +7,32 @@
 </head>
 <body>
 <section>
-  <!-- Навигация: Кнопка назад -->
   <div style="margin-bottom: 25px;">
     <a th:href="@{/events}" style="text-decoration: none; color: #764ba2; font-weight: bold; display: flex; align-items: center; gap: 8px;">
       <span>←</span> Вернуться к списку мероприятий
     </a>
   </div>
 
-  <!-- Основная карточка мероприятия -->
   <div style="background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-direction: column; border: 1px solid #eee;">
 
-    <!-- БЛОК С ДИНАМИЧЕСКИМ ФОТО (на основе Category Enum) -->
     <div style="width: 100%; height: 400px; position: relative; background-color: #2c3e50;">
 
-      <!-- Изображение для CONCERT -->
       <img th:if="${event.category == 'CONCERT'}"
            src="https://cdn.sortiraparis.com/images/80/1665/1123952-linkin-park-en-concert-a-paris-la-defense-arena-on-y-etait-on-vous-raconte.jpg"
            style="width: 100%; height: 100%; object-fit: cover;" alt="Концерт">
 
-      <!-- Изображение для THEATRE -->
       <img th:if="${event.category == 'THEATRE'}"
            src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Bolshoi_interior_2011.jpeg"
            style="width: 100%; height: 100%; object-fit: cover;" alt="Театр">
 
-      <!-- Изображение для SPORT -->
       <img th:if="${event.category == 'SPORT'}"
            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaRSPwNKDYEgu_hG_oD85x5LC2BbwOo238Ig&s"
            style="width: 100%; height: 100%; object-fit: cover;" alt="Спорт">
 
-      <!-- Заглушка, если категория не совпала -->
       <img th:if="${event.category != 'CONCERT' and event.category != 'THEATRE' and event.category != 'SPORT'}"
            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwKGvSvPQksi3kNmtDiRsJi7VGdXgndPVrqw&s"
            style="width: 100%; height: 100%; object-fit: cover;" alt="Мероприятие">
-
-      <!-- Градиентное наложение и текст поверх фото -->
+          
       <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.85)); padding: 50px 35px; color: white;">
                 <span style="background: #27ae60; padding: 6px 15px; border-radius: 20px; font-size: 13px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;"
                       th:text="${event.status}">ACTIVE</span>
@@ -54,10 +46,9 @@
       </div>
     </div>
 
-    <!-- КОНТЕНТНАЯ ЧАСТЬ: Информация и Покупка -->
     <div style="display: flex; flex-wrap: wrap; padding: 40px; gap: 40px;">
 
-      <!-- Левая колонка: Детали -->
+
       <div style="flex: 2; min-width: 300px;">
         <h3 style="color: #2c3e50; border-bottom: 2px solid #f0f0f0; padding-bottom: 10px; margin-top: 0;">Детали проведения</h3>
 
@@ -80,7 +71,7 @@
           </div>
         </div>
 
-        <!-- Блок удаления (Требование CRUD для админа) -->
+
         <div style="margin-top: 40px; padding: 20px; background: #fff5f5; border-radius: 10px; border: 1px solid #feb2b2;">
           <p style="margin: 0 0 10px 0; color: #c53030; font-weight: bold;">Панель управления:</p>
           <form th:action="@{/api/events/delete/{id}(id=${event.eventId})}" method="post"
@@ -92,13 +83,12 @@
         </div>
       </div>
 
-      <!-- Правая колонка: Касса -->
+
       <div style="flex: 1; min-width: 300px;">
         <div style="background: #f8faff; border: 2px dashed #667eea; border-radius: 15px; padding: 30px; text-align: center;">
           <h3 style="margin-top: 0; color: #4a5568;">Билеты</h3>
           <p style="color: #718096; font-size: 14px; margin-bottom: 25px;">Билет включает в себя посещение мероприятия и закрепленное место.</p>
 
-          <!-- Логика покупки (пока заглушка кнопки) -->
           <button style="width: 100%; padding: 18px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 10px; font-size: 18px; font-weight: bold; cursor: pointer; transition: 0.3s; box-shadow: 0 4px 15px rgba(118, 75, 162, 0.3);"
                   onmouseover="this.style.transform='translateY(-2px)'"
                   onmouseout="this.style.transform='translateY(0)'">
