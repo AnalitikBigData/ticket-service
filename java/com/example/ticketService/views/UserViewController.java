@@ -28,10 +28,10 @@ public class UserViewController {
     public String registerUser(@Valid @ModelAttribute("user") RegisterUserRequest request,
                                BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return "register"; // Если есть ошибки валидации, возвращаем на форму
+            return "register"; 
         }
         userService.registerUser(request);
-        return "redirect:/login?success"; // После успеха отправляем на вход
+        return "redirect:/login?success"; 
     }
 
     @GetMapping("/login")
@@ -44,7 +44,7 @@ public class UserViewController {
     public String loginUser(@Valid @ModelAttribute("loginRequest") LoginUserRequest request,
                             BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return "login"; // Если логин/пароль пустые
+            return "login"; 
         }
         userService.LoginUser(request);
         return "redirect:/?auth_success";
